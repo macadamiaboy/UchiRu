@@ -1,3 +1,9 @@
 <h1>Schools</h1>
 
-<p>There are <%= @schools.length %> schools registered</p>
+<p>There are schools registered:</p>
+
+<% @schools.each do |school| %>
+  <% current_school = "School №#{school.id}" %>
+  <h3><%= link_to "#{current_school}", school_path(school) %></h3>
+<% end %>
+

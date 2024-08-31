@@ -1,6 +1,6 @@
 class SchoolsController < ApplicationController
 
-  before_action :set_school!, only: %i[destroy]
+  #before_action :set_school!, only: %i[destroy]
   
   def index
     @schools = School.all
@@ -9,6 +9,21 @@ class SchoolsController < ApplicationController
   def new
     @school = School.new
   end
+
+  def create
+    @school = School.new
+    if @school.save
+      redirect_to schools_path
+    else
+      render :new
+    end
+  end
+
+  def show
+    @school = School.find_by id: params[:id]
+  end
+
+=begin
 
   def destroy
     @school.students.each do |student|
@@ -25,5 +40,6 @@ class SchoolsController < ApplicationController
   def set_school!
     @school = School.find params[:id]
   end
+=end
 
 end
