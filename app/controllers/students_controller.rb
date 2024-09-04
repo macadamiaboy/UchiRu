@@ -2,6 +2,7 @@ class StudentsController < ApplicationController
   before_action :set_school!, only: :index
   before_action :set_grade!, only: :index
   before_action :authenticate_or_request_with_http_token, only: %i[destroy show]
+
   after_action :add_header, only: :create
 
   def index
@@ -21,6 +22,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new student_params
     if @student.save
+      @token = ApiKey.create(bearer: @student)
       redirect_to schools_path
     else
       render :new
@@ -47,7 +49,7 @@ class StudentsController < ApplicationController
   end
 
   def add_header
-    response.headers['X-Auth-Token'] = 'token'
+    response.headers['X-Auth-Token'] = @token
   end
 
   def authenticate_with_api_key
