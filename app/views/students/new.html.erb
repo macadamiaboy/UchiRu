@@ -1,0 +1,55 @@
+<h1>New student</h1>
+
+<%= form_with model: @student do |f| %>
+  <div>
+    <div>
+      <%= f.label :first_name %>
+    </div>
+
+    <div>
+      <%= f.text_field :first_name, placeholder: 'First Name'%>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <%= f.label :last_name %>
+    </div>
+
+    <div>
+      <%= f.text_field :last_name, placeholder: 'Last Name'%>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <%= f.label :surname %>
+    </div>
+
+    <div>
+      <%= f.text_field :surname, placeholder: 'Surname'%>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <%= f.label :school_id %>
+    </div>
+
+    <div>
+      <%= f.number_field :school_id %>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <%= f.label :grade_id %>
+    </div>
+
+    <div>
+      <%= f.number_field :grade_id %>
+    </div>
+  </div>
+
+  <%= f.submit "Создать студента" %>
+<% end %>

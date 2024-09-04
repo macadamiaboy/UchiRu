@@ -11,6 +11,19 @@ class StudentsController < ApplicationController
     @student = Student.find_by id: params[:id]
   end
 
+  def new
+    @student = Student.new
+  end
+
+  def create
+    @student = Student.new student_params
+    if @student.save
+      redirect_to schools_path
+    else
+      render :new
+    end
+  end
+
   private
   def set_school!
     @school = School.find params[:school_id]
@@ -20,4 +33,7 @@ class StudentsController < ApplicationController
     @grade = @school.grades.find params[:grade_id]
   end
 
+  def student_params
+    params.require(:student).permit(:first_name, :last_name, :surname, :school_id, :grade_id)
+  end
 end
