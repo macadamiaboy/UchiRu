@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :schools, only: %i[index new create show]
+  resources :schools, only: %i[index new create show] do
+    resources :grades, only: %i[index] do
+      resources :students
+    end
+  end
+
   resources :students, only: %i[index, show]
 
   namespace :api do

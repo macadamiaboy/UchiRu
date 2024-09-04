@@ -2,7 +2,7 @@ class ApiKey < ApplicationRecord
   HMAC_SECRET_KEY = Rails.application.credentials.api_key_hmac_secret_key
   TOKEN_NAMESPACE = "tkn"
 
-  encrypts :random_token_prefix, deterministic: true
+  #encrypts :random_token_prefix, deterministic: true
 
   belongs_to :bearer, polymorphic: true
   
