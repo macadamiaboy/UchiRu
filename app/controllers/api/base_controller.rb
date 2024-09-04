@@ -1,18 +1,10 @@
 module Api
   class BaseController < ApplicationController
-    #include Pundit
-
-    #rescue_from Pundit::NotAuthorizedError, with: :not_authorized
-
     skip_before_action :authenticate_user!
     skip_before_action :verify_authenticity_token
     before_action :authenticate_with_api_key
 
     attr_reader :current_bearer, :current_api_key
-
-    #def pundit_user
-    #  current_api_key
-    #end
 
     protected
     def not_authorized

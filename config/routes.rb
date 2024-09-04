@@ -6,13 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :students, only: %i[new create destroy]
-
-  namespace :api do
-    namespace :v1 do
-      resource :api_key, only: %i[show]
-    end
-  end
+  resources :students, only: %i[new create destroy show]
 
   root 'schools#index'
   
